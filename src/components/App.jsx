@@ -1,16 +1,25 @@
-export const App = () => {
+
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+
+import { selectContacts } from 'redux/selectors';
+import { Form } from "./ContactForm";
+import { ContactsList } from "./ContactsList.jsx";
+import { Filter } from "./Filter";
+import { useSelector } from 'react-redux';
+
+export default function App() {
+
+  const contacts = useSelector(selectContacts)
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <div>
+      <h1>Phonebook</h1>
+      <Form />
+      <h2>Contacts</h2>
+      {contacts.length > 0 && <Filter />}
+      {contacts.length > 0 ? <ContactsList /> : <p>No contacts here yet</p>}
+    </div >
   );
-};
+}
+
+

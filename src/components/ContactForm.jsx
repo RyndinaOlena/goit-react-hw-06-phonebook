@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { nanoid } from 'nanoid'
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setContacts } from '../redux/contactReducer'
@@ -18,7 +20,8 @@ export const Form = () => {
 
     const setAddContacts = () => {
         if (contacts.find(contact => contact.name === name)) {
-            return alert(`${name} is already in contacts`)
+            return NotificationManager.warning(`${name} is already in contacts`, 'warning', 3000);
+
         }
         dispatch(setContacts({ name, number, id: nanoid() }))
     }
@@ -48,18 +51,21 @@ export const Form = () => {
 
 
     return (
-        <form onSubmit={handeSubmit} >
-            <label>
-                <span>Name</span>
-                <input className={css.list} onChange={handeChange} type="text" name="name" value={name} required />
-            </label>
-            <label>
-                <span>Number</span>
-                <input className={css.list} onChange={handeChange} type="tel" name="number" value={number} required />
-            </label>
-            <button className={css.btnAdd} onClick={handeSubmit} type="submit">Add contact</button>
-        </form >
+        <>
+            <form onSubmit={handeSubmit} >
+                <label>
+                    <span>Name</span>
+                    <input className={css.list} onChange={handeChange} type="text" name="name" value={name} required />
+                </label>
+                <label>
+                    <span>Number</span>
+                    <input className={css.list} onChange={handeChange} type="tel" name="number" value={number} required />
+                </label>
+                <button className={css.btnAdd} onClick={handeSubmit} type="submit">Add contact</button>
+            </form >
 
+            <NotificationContainer />
+        </>
     )
 }
 

@@ -1,6 +1,3 @@
-
-import { NotificationContainer, NotificationManager } from 'react-notifications';
-
 import { selectContacts } from 'redux/selectors';
 import { Form } from "./ContactForm";
 import { ContactsList } from "./ContactsList.jsx";

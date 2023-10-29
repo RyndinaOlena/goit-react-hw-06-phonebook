@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useEffect } from "react";
 import { nanoid } from 'nanoid'
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
